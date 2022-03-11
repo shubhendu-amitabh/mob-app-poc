@@ -65,16 +65,16 @@ class _LoginPageState extends State<LoginPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () => {
-            if (emailController.text.isEmpty){
-                showToastWithMessage('email cannot be empty')
+            if (emailController.text.isEmpty)
+              {showToastWithMessage('email cannot be empty')}
+            else if (passwordController.text.isEmpty)
+              {showToastWithMessage('password cannot be empty')}
+            else
+              {
+                // Load dashboard
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Dashboard()))
               }
-            else if (passwordController.text.isEmpty){
-              showToastWithMessage('password cannot be empty')
-            }else{
-              // Load dashboard
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Dashboard()))
-            }
           },
         ),
       ),
@@ -86,9 +86,7 @@ class _LoginPageState extends State<LoginPage> {
           'Forgot Password',
           style: TextStyle(color: Colors.grey, fontSize: 16),
         ),
-        onPressed: () => {
-          showToastWithMessage('Feature not supported yet')
-        });
+        onPressed: () => {showToastWithMessage('Feature not supported yet')});
 
     // Main View of login page
     return SafeArea(
@@ -109,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-  void showToastWithMessage (String message) {
+  void showToastWithMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
     ));
